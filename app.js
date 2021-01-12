@@ -1,13 +1,13 @@
-var express = require('express');
-var app = express();
-var port = process.env.PORT || 6300;
-var cors = require('cors');
-var bodyParser = require('body-parser')
-var mongo = require('mongodb');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 6300;
+const cors = require('cors');
+const bodyParser = require('body-parser')
+const mongo = require('mongodb');
 //const { runInNewContext } = require('vm');
-var mongourl = "mongodb+srv://Sanyam632000:Snp632000@cluster0.lwuoy.mongodb.net/FirstDatabase?retryWrites=true&w=majority";
-var MongoClient = mongo.MongoClient;
-var db;
+const mongourl = "mongodb+srv://Sanyam632000:Snp632000@cluster0.lwuoy.mongodb.net/FirstDatabase?retryWrites=true&w=majority";
+const MongoClient = mongo.MongoClient;
+let db;
 
 
 app.use(bodyParser.urlencoded({extended:true}));                //Used while using Post Api to read the body
@@ -108,7 +108,9 @@ app.put('/updateorder',(req,res)=>{
 MongoClient.connect(mongourl,(err,connection)=>{
     if (err) throw err;
         db= connection.db('FirstDatabase');
-        app.listen(port)
+        app.listen(port,(err)=>{
+            if (err) throw err;
+        })
 
 })
 
